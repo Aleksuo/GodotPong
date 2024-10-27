@@ -13,6 +13,8 @@ public partial class Main : Node
 
 	private int _leftScore;
 	private int _rightScore;
+
+	[Export] public int WinScore = 3;
 	public override void _Ready()
 	{
 		_leftStartPos = GetNode<Marker2D>("LeftStartPos");
@@ -46,36 +48,66 @@ public partial class Main : Node
 		_ball.Reset(_ballStartPos.Position);
 	}
 
-	async public void NewGame()
+	private void ResetScores()
 	{
-		GD.Print("Starting new game");
-		ResetPositions();
-		ShowAll();
+		_leftScore = 0;
+		_rightScore = 0;
+		_hud.UpdateScores(_leftScore, _rightScore);
+	}
+
+	async private void StartKickoff()
+	{
 		await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
 		_ball.Start();
 	}
-	
-	public override void _Process(double delta)
+
+	public void NewGame()
 	{
+		GD.Print("Starting new game");
+		ResetScores();
+		ResetPositions();
+		ShowAll();
+		StartKickoff();
 	}
 
-	async private void OnBallExitedLeftSide()
+	private bool IsGameOver()
+	{
+		return _leftScore >= WinScore || _rightScore >= WinScore;
+	}
+
+	private void OnBallExitedLeftSide()
 	{
 		GD.Print("Ball exited left side");
 		_rightScore += 1;
 		_hud.UpdateScores(_leftScore, _rightScore);
-		ResetPositions();
-		await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-		_ball.Start();
+		if (IsGameOver())
+		{
+			ResetPositions();
+			HideAll();
+			_hud.ShowGameOverScreen(false);
+		}
+		else
+		{
+			ResetPositions();
+			StartKickoff();
+		}
 	}
 
-	async private void OnBallExitedRightSide()
+	private void OnBallExitedRightSide()
 	{
 		GD.Print("Ball exited right side");
 		_leftScore += 1;
 		_hud.UpdateScores(_leftScore, _rightScore);
-		ResetPositions();
-		await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-		_ball.Start();
+		if (IsGameOver())
+		{
+			ResetPositions();
+			HideAll();
+			_hud.ShowGameOverScreen(true);
+		}
+		else
+		{
+			ResetPositions();
+			StartKickoff();
+		}
 	}
 }
