@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Main : Node
 {
@@ -67,7 +66,6 @@ public partial class Main : Node
 
 	public void NewGame()
 	{
-		GD.Print("Starting new game");
 		ResetScores();
 		ResetPositions();
 		ShowAll();
@@ -81,7 +79,6 @@ public partial class Main : Node
 
 	private void OnBallExitedLeftSide()
 	{
-		GD.Print("Ball exited left side");
 		_rightScore += 1;
 		_hud.UpdateScores(_leftScore, _rightScore);
 		if (IsGameOver())
@@ -99,7 +96,6 @@ public partial class Main : Node
 
 	private void OnBallExitedRightSide()
 	{
-		GD.Print("Ball exited right side");
 		_leftScore += 1;
 		_hud.UpdateScores(_leftScore, _rightScore);
 		if (IsGameOver())

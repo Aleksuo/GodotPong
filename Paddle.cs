@@ -1,18 +1,16 @@
 using Godot;
-using System;
+
 public partial class Paddle : CharacterBody2D
 {
 	[Export] public int Speed = 400;
 	private Vector2 _movementInput = Vector2.Zero;
 
 	private Vector2 _screenSize = Vector2.Zero;
-	// Called when the node enters the scene tree for the first time.
+	
 	public override void _Ready()
 	{
 		_screenSize = GetViewportRect().Size;
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -29,10 +27,6 @@ public partial class Paddle : CharacterBody2D
 		);
 		MoveAndCollide(newPos - Position);
 	}
-	public override void _Process(double delta)
-	{
-	}
-
 	public void Start(Vector2 position)
 	{
 		Position = position;

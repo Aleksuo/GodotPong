@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Ball : CharacterBody2D
 {
@@ -34,23 +33,18 @@ public partial class Ball : CharacterBody2D
 		var xDirection = (randInt % 2 == 0) ? 1 : -1;
 		var randomDirection = new Vector2(xDirection, (float)GD.RandRange(-0.75, 0.75)).Normalized();
 		_velocity = randomDirection * BaseSpeed;
-		GD.Print(_velocity.ToString());
 	}
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_screenSize = GetViewportRect().Size;
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 
 	public override void _PhysicsProcess(double delta)
 	{
 		var collision = MoveAndCollide(_velocity * (float)delta);
 		if (collision != null)
 		{
-			GD.Print("Collided");
 			_velocity = _velocity.Bounce(collision.GetNormal());
 			EmitSignal(SignalName.BallHit);
 		}
@@ -82,6 +76,4 @@ public partial class Ball : CharacterBody2D
 			EmitSignal(SignalName.BallExitedRightSide);
 		}
 	}
-	
-	
 }

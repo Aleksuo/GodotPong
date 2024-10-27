@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class AiControlComponent : Node
 {
@@ -13,11 +12,6 @@ public partial class AiControlComponent : Node
 	public override void _Ready()
 	{
 		_parentPaddle = GetParent<Paddle>();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 
 	public void OnBallPositionUpdate(Vector2 position)
