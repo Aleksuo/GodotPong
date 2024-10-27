@@ -4,6 +4,8 @@ using System;
 public partial class Hud : CanvasLayer
 {
 	private const String NewGameInfoMessage = "Use W and S to move the paddle. First to 3 points wins.";
+	private const String PlayerWonMessage = "You won!";
+	private const String PlayerLostMessage = "You lost. Try again.";
 
 	private Label _leftScoreLabel;
 	private Label _rightScoreLabel;
@@ -41,14 +43,7 @@ public partial class Hud : CanvasLayer
 		_rightScoreLabel.Hide();
 		_newGameButton.Hide();
 		_message.Show();
-		if (playerWon)
-		{
-			_message.Text = "You won!";
-		}
-		else
-		{
-			_message.Text = "You lost. Try again.";
-		}
+		_message.Text = playerWon ? PlayerWonMessage : PlayerLostMessage;
 
 		await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
 		ShowNewGameScreen();
@@ -58,13 +53,6 @@ public partial class Hud : CanvasLayer
 	{
 		_leftScoreLabel.Text = leftScore.ToString();
 		_rightScoreLabel.Text = rightScore.ToString();
-	}
-	
-	
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 
 	private void OnNewGameButtonPressed()
