@@ -6,6 +6,7 @@ public partial class Main : Node
 	private Paddle _leftPaddle;
 	private Paddle _rightPaddle;
 	private Ball _ball;
+	private Line2D _centerLine;
 	private Marker2D _leftStartPos;
 	private Marker2D _rightStartPos;
 	private Marker2D _ballStartPos;
@@ -23,6 +24,7 @@ public partial class Main : Node
 		_leftPaddle = GetNode<Paddle>("LeftPaddle");
 		_rightPaddle = GetNode<Paddle>("RightPaddle");
 		_ball = GetNode<Ball>("Ball");
+		_centerLine = GetNode<Line2D>("CenterLine");
 		_hud = GetNode<Hud>("HUD");
 		HideAll();
 	}
@@ -32,6 +34,7 @@ public partial class Main : Node
 		_leftPaddle.Hide();
 		_rightPaddle.Hide();
 		_ball.Hide();
+		_centerLine.Hide();
 	}
 
 	private void ShowAll()
@@ -39,6 +42,7 @@ public partial class Main : Node
 		_leftPaddle.Show();
 		_rightPaddle.Show();
 		_ball.Show();
+		_centerLine.Show();
 	}
 
 	private void ResetPositions()
