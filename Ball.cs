@@ -10,6 +10,12 @@ public partial class Ball : CharacterBody2D
 
 	[Signal]
 	public delegate void BallExitedLeftSideEventHandler();
+
+	[Signal]
+	public delegate void BallHitEventHandler();
+
+	[Signal]
+	public delegate void BallLocationUpdateEventHandler(Vector2 position);
 	
 	[Export]
 	public int BaseSpeed = 450;
@@ -46,6 +52,7 @@ public partial class Ball : CharacterBody2D
 		{
 			GD.Print("Collided");
 			_velocity = _velocity.Bounce(collision.GetNormal());
+			EmitSignal(SignalName.BallHit);
 		}
 		var collisionShape2d = GetNode<CollisionShape2D>("CollisionShape2D");
 		var height = collisionShape2d.Shape.GetRect().Size.Y;
@@ -53,11 +60,15 @@ public partial class Ball : CharacterBody2D
 		{
 			SetPosition(new Vector2(Position.X, 0));
 			_velocity = _velocity.Bounce(Vector2.Down);
+			EmitSignal(SignalName.BallHit);
 		}else if ((Position.Y + height) >= _screenSize.Y)
 		{
 			SetPosition(new Vector2(Position.X, _screenSize.Y - height));
 			_velocity = _velocity.Bounce(Vector2.Up);
+			EmitSignal(SignalName.BallHit);
 		}
+
+		EmitSignal(SignalName.BallLocationUpdate, Position);
 	}
 
 	private void OnScreenExited()

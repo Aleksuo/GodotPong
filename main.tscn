@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl85r508n14r5"]
+[gd_scene load_steps=8 format=3 uid="uid://dl85r508n14r5"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_f6j56"]
 [ext_resource type="PackedScene" uid="uid://dgl8ft8qwfqq1" path="res://paddle.tscn" id="1_ijbvu"]
 [ext_resource type="Script" path="res://PlayerControlComponent.cs" id="2_wovbd"]
+[ext_resource type="Script" path="res://AiControlComponent.cs" id="4_2sxpl"]
 [ext_resource type="PackedScene" uid="uid://bo7l701tlv6pw" path="res://ball.tscn" id="4_5qx13"]
 [ext_resource type="PackedScene" uid="uid://qm7huvkcxo5x" path="res://hud.tscn" id="5_kw7fu"]
+[ext_resource type="AudioStream" uid="uid://p54beateenty" path="res://sounds/BallHIt.wav" id="6_ivls7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_f6j56")
@@ -25,8 +27,8 @@ script = ExtResource("2_wovbd")
 
 [node name="RightPaddle" parent="." instance=ExtResource("1_ijbvu")]
 
-[node name="PlayerControlComponent" type="Node" parent="RightPaddle"]
-script = ExtResource("2_wovbd")
+[node name="AIControlComponent" type="Node" parent="RightPaddle"]
+script = ExtResource("4_2sxpl")
 
 [node name="BallStartPos" type="Marker2D" parent="."]
 position = Vector2(560, 304)
@@ -42,8 +44,13 @@ position = Vector2(560, 304)
 
 [node name="HUD" parent="." instance=ExtResource("5_kw7fu")]
 
+[node name="BallHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ivls7")
+
 [connection signal="UpdateMovementVector" from="LeftPaddle/PlayerControlComponent" to="LeftPaddle" method="OnUpdateMovementVector"]
-[connection signal="UpdateMovementVector" from="RightPaddle/PlayerControlComponent" to="RightPaddle" method="OnUpdateMovementVector"]
+[connection signal="UpdateMovementVector" from="RightPaddle/AIControlComponent" to="RightPaddle" method="OnUpdateMovementVector"]
 [connection signal="BallExitedLeftSide" from="Ball" to="." method="OnBallExitedLeftSide"]
 [connection signal="BallExitedRightSide" from="Ball" to="." method="OnBallExitedRightSide"]
+[connection signal="BallHit" from="Ball" to="." method="OnBallHit"]
+[connection signal="BallLocationUpdate" from="Ball" to="RightPaddle/AIControlComponent" method="OnBallPositionUpdate"]
 [connection signal="NewGame" from="HUD" to="." method="NewGame"]

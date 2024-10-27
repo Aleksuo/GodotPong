@@ -114,4 +114,9 @@ public partial class Main : Node
 			StartKickoff();
 		}
 	}
+
+	private void OnBallHit()
+	{
+		GetNode<AudioStreamPlayer>("BallHit").Play();
+	}
 }
