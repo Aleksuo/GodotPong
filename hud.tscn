@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://qm7huvkcxo5x"]
+
+[ext_resource type="Script" path="res://Hud.cs" id="1_t1vvn"]
+[ext_resource type="FontFile" uid="uid://bfv0y5pdo3hxi" path="res://fonts/bit9x9.ttf" id="2_gfecv"]
+[ext_resource type="FontFile" uid="uid://chlcg6eny7dg3" path="res://fonts/Xolonium-Regular.ttf" id="3_4vsjh"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_t1vvn")
+
+[node name="LeftScoreLabel" type="Label" parent="."]
+offset_left = 376.0
+offset_top = 32.0
+offset_right = 464.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_gfecv")
+theme_override_font_sizes/font_size = 128
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="RightScoreLabel" type="Label" parent="."]
+offset_left = 704.0
+offset_top = 32.0
+offset_right = 792.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_gfecv")
+theme_override_font_sizes/font_size = 128
+text = "0"
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -132.0
+offset_right = 448.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4vsjh")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 160
+
+[node name="NewGameButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 192.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4vsjh")
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+text = "New game"
+
+[connection signal="pressed" from="NewGameButton" to="." method="OnNewGameButtonPressed"]
