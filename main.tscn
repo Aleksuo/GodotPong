@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://be8c5isvsywit" path="res://AiControlComponent.cs" id="4_2sxpl"]
 [ext_resource type="PackedScene" uid="uid://bo7l701tlv6pw" path="res://ball.tscn" id="4_5qx13"]
 [ext_resource type="PackedScene" uid="uid://qm7huvkcxo5x" path="res://hud.tscn" id="5_kw7fu"]
-[ext_resource type="AudioStream" uid="uid://p54beateenty" path="res://sounds/BallHIt.wav" id="6_ivls7"]
+[ext_resource type="AudioStream" uid="uid://p54beateenty" path="res://assets/sounds/BallHIt.wav" id="7_272bh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_f6j56")
@@ -45,7 +45,7 @@ position = Vector2(560, 304)
 [node name="HUD" parent="." instance=ExtResource("5_kw7fu")]
 
 [node name="BallHit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_ivls7")
+stream = ExtResource("7_272bh")
 
 [connection signal="UpdateMovementVector" from="LeftPaddle/PlayerControlComponent" to="LeftPaddle" method="OnUpdateMovementVector"]
 [connection signal="UpdateMovementVector" from="RightPaddle/AIControlComponent" to="RightPaddle" method="OnUpdateMovementVector"]

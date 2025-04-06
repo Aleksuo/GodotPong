@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://p54beateenty"
-path="res://.godot/imported/BallHIt.wav-cfdf36cdd19d2ea9dfc97b55744f735b.sample"
+path="res://.godot/imported/BallHIt.wav-51cc12a45a2ebcad199a07a14371c363.sample"
 
 [deps]
 
-source_file="res://sounds/BallHIt.wav"
-dest_files=["res://.godot/imported/BallHIt.wav-cfdf36cdd19d2ea9dfc97b55744f735b.sample"]
+source_file="res://assets/sounds/BallHIt.wav"
+dest_files=["res://.godot/imported/BallHIt.wav-51cc12a45a2ebcad199a07a14371c363.sample"]
 
 [params]
 
