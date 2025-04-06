@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dl85r508n14r5"]
 
-[ext_resource type="Script" path="res://Main.cs" id="1_f6j56"]
+[ext_resource type="Script" uid="uid://cykfv54v522il" path="res://Main.cs" id="1_f6j56"]
 [ext_resource type="PackedScene" uid="uid://dgl8ft8qwfqq1" path="res://paddle.tscn" id="1_ijbvu"]
-[ext_resource type="Script" path="res://PlayerControlComponent.cs" id="2_wovbd"]
-[ext_resource type="Script" path="res://AiControlComponent.cs" id="4_2sxpl"]
+[ext_resource type="Script" uid="uid://dpo34iskj5sk" path="res://PlayerControlComponent.cs" id="2_wovbd"]
+[ext_resource type="Script" uid="uid://be8c5isvsywit" path="res://AiControlComponent.cs" id="4_2sxpl"]
 [ext_resource type="PackedScene" uid="uid://bo7l701tlv6pw" path="res://ball.tscn" id="4_5qx13"]
 [ext_resource type="PackedScene" uid="uid://qm7huvkcxo5x" path="res://hud.tscn" id="5_kw7fu"]
 [ext_resource type="AudioStream" uid="uid://p54beateenty" path="res://sounds/BallHIt.wav" id="6_ivls7"]
