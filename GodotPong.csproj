@@ -3,4 +3,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="scenes\ball\Ball.cs.uid" />
+    <Content Include="scenes\ball\ball.tscn" />
+    <Content Include="scenes\hud\Hud.cs.uid" />
+    <Content Include="scenes\hud\hud.tscn" />
+    <Content Include="scenes\main\Main.cs.uid" />
+    <Content Include="scenes\main\main.tscn" />
+    <Content Include="scenes\paddle\AiControlComponent.cs.uid" />
+    <Content Include="scenes\paddle\Paddle.cs.uid" />
+    <Content Include="scenes\paddle\paddle.tscn" />
+    <Content Include="scenes\paddle\PlayerControlComponent.cs.uid" />
+  </ItemGroup>
 </Project>
