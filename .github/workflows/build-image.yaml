@@ -15,6 +15,7 @@ jobs:
           set: |
             *.output=type=docker,dest=${{runner.temp}}/godotbase.tar
       - name: Upload tarball to artifacts
+        uses: actions/upload-artifact@v4
         with:
           name: godotbase
           path: ${{runner.temp}}/godotbase.tar
