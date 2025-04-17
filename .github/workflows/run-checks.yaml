@@ -1,0 +1,15 @@
+﻿name: Run checks
+on:
+  workflow_call: 
+jobs:
+  build-solution:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Load image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: godotbase
+          path: ${{runner.temp}}
+      - name: Load docker image
+        run: |
+          docker load -i ${{runner.temp}}/godotbase
