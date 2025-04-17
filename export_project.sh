@@ -10,10 +10,10 @@ fi
 
 
 echo "Building docker image..."
-docker build -t godotbuild:latest .
+docker buildx bake
 
 echo "Starting container and mounting project volume..."
-docker run --name godotbuild -t -d --rm -v ${PWD}:/usr/src/project -w /usr/src/project godotbuild:latest
+docker run --name godotbuild -t -d --rm -v ${PWD}:/usr/src/project -w /usr/src/project godotpong/godotbase:latest
 
 echo "Running export..."
 
