@@ -21,5 +21,5 @@ jobs:
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             godotpong/godotbase:latest \
-            godot --headless --quit --build-solutions
+            godot --verbose --headless --quit --build-solutions
   
