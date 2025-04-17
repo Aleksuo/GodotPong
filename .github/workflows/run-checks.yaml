@@ -12,4 +12,4 @@ jobs:
           path: ${{runner.temp}}
       - name: Load docker image
         run: |
-          docker load -i ${{runner.temp}}/godotbase
+          docker load -i ${{runner.temp}}/godotbase.tar
