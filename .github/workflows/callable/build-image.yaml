@@ -1,0 +1,21 @@
+﻿name: Build Godot base image
+on:
+  workflow_call:
+jobs:
+  build-image:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and export tarball
+        uses: docker/bake-action@v6
+        with:
+          files: docker-bake.hcl
+          targets: godotbase
+          set: |
+            *.output=type=docker,dest=${{runner.temp}}/godotbase.tar
+      - name: Upload tarball to artifacts
+        with:
+          name: godotbase
+          path: ${{runner.temp}}/godotbase.tar
+        
