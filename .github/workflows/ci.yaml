@@ -1,0 +1,10 @@
+﻿name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request: 
+jobs:
+  build-image:
+    name: Build Godot image
+    uses: ./.github/workflows/callable/build-image.yaml
