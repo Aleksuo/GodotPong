@@ -10,5 +10,6 @@ jobs:
     uses: ./.github/workflows/build-image.yaml
   run-checks:
     name: Run Godot project checks
+    needs: build-image
     uses: ./.github/workflows/run-checks.yaml
     
