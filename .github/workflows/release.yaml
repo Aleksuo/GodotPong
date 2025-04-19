@@ -1,0 +1,24 @@
+﻿name: release.yaml
+on:
+  workflow_call: 
+jobs:
+  release-export:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Load image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: godotbase
+          path: ${{runner.temp}}
+      - name: Load docker image
+        run: |
+          docker load -i ${{runner.temp}}/godotbase.tar
+      - name: Build solution
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            godotpong/godotbase:latest \
+            godot --verbose --headless --quit --export-release "Windows Desktop" ./build
