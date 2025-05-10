@@ -22,3 +22,9 @@ jobs:
             -w /workspace \
             godotpong/godotbase:latest \
             godot --verbose --headless --quit --export-release "Windows Desktop" ./build
+      - name: Store arftifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: ./build
+
