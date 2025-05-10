@@ -13,9 +13,7 @@ jobs:
     needs: build-image
     uses: ./.github/workflows/run-checks.yaml
   release-export:
-    runs-on: ubuntu-22.04
+    name: Release export
     needs: build-image
-    steps: 
-      - name: Release export
-        uses: ./.github/workflows/release.yaml     
+    uses: ./.github/workflows/release.yaml     
     
