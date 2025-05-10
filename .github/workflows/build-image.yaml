@@ -14,8 +14,8 @@ jobs:
           targets: godotbase
           set: |
             *.output=type=docker,dest=${{runner.temp}}/godotbase.tar
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+            *.cache-from=type=gha,scope=godotbase
+            *.cache-to=type=gha,mode=max,scope=godotbase
       - name: Upload tarball to artifacts
         uses: actions/upload-artifact@v4
         with:
