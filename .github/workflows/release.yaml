@@ -21,7 +21,7 @@ jobs:
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             godotpong/godotbase:latest \
-            godot --headless --import --build-solutions --quit-after 2 --path /workspace
+            godot --headless --import --build-solutions --quit --path /workspace
       - name: Build windows artifact
         run: |
           mkdir -p ./build/windows && \
