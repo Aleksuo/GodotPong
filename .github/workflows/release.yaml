@@ -15,8 +15,9 @@ jobs:
       - name: Load docker image
         run: |
           docker load -i ${{runner.temp}}/godotbase.tar
-      - name: Build solution
+      - name: Build windows artifact
         run: |
+          mkdir -p ./build/windows && \
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
