@@ -15,13 +15,13 @@ jobs:
       - name: Load docker image
         run: |
           docker load -i ${{runner.temp}}/godotbase.tar
-      - name: Generate .godot directory
+      - name: Pre-import assets & UID maps
         run: |
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             godotpong/godotbase:latest \
-            godot --headless --import --quit
+            godot --headless --import --build-solutions --quit-after 2 --path /workspace
       - name: Build windows artifact
         run: |
           mkdir -p ./build/windows && \
