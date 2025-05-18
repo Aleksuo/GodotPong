@@ -1,0 +1,21 @@
+﻿name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request: 
+jobs:
+  build-image:
+    name: Build Godot image
+    uses: ./.github/workflows/build-image.yaml
+  run-checks:
+    name: Run Godot project checks
+    needs: build-image
+    uses: ./.github/workflows/run-checks.yaml
+  release-export:
+    name: Release export
+    needs: 
+     - build-image
+     - run-checks
+    uses: ./.github/workflows/release.yaml     
+    

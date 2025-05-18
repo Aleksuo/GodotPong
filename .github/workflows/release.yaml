@@ -1,0 +1,44 @@
+﻿name: Release export
+on:
+  workflow_call: 
+jobs:
+  release-export:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Load image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: godotbase
+          path: ${{runner.temp}}
+      - name: Load docker image
+        run: |
+          docker load -i ${{runner.temp}}/godotbase.tar
+      - name: Pre-import assets & UID maps
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            godotpong/godotbase:latest \
+            godot --headless --import --build-solutions --quit --path /workspace
+      - name: Build windows artifact
+        run: |
+          mkdir -p ./build/windows_x64 && \
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            godotpong/godotbase:latest \
+            godot --verbose --headless --quit --export-release "Windows Desktop" ./build/windows_x64/godot-pong_x64.exe
+      - name: Zip artifact
+        run: |
+          zip -r godot-pong_x64.zip ./build/windows_x64
+      - name: Release on tag
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          files: |
+            godot-pong_x64.zip
+
+
+

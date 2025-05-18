@@ -4,7 +4,8 @@
 RUN apt-get update && apt-get install -y git \
     dotnet-sdk-8.0 \
     wget \
-    unzip
+    unzip \
+    libfontconfig1
 
 # Download and install Godot and export templates
 RUN wget https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_mono_linux_x86_64.zip && \
