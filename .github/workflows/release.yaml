@@ -1,4 +1,4 @@
-﻿name: release.yaml
+﻿name: Release export
 on:
   workflow_call: 
 jobs:
@@ -24,15 +24,21 @@ jobs:
             godot --headless --import --build-solutions --quit --path /workspace
       - name: Build windows artifact
         run: |
-          mkdir -p ./build/windows && \
+          mkdir -p ./build/windows_x64 && \
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             godotpong/godotbase:latest \
-            godot --verbose --headless --quit --export-release "Windows Desktop" ./build/windows/godot-pong.exe
-      - name: Store arftifacts
-        uses: actions/upload-artifact@v4
+            godot --verbose --headless --quit --export-release "Windows Desktop" ./build/windows_x64/godot-pong_x64.exe
+      - name: Zip artifact
+        run: |
+          zip -r godot-pong_x64.zip ./build/windows_x64
+      - name: Release on tag
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
-          name: build
-          path: ./build
+          files: |
+            godot-pong_x64.zip
+
+
 
