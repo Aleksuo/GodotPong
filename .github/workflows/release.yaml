@@ -34,8 +34,8 @@ jobs:
             godot --verbose --headless --quit --export-release "Windows Desktop" ./build/windows_x64/godot-pong_x64.exe
       - name: Zip artifact
         run: |
-          cd ./build
-          zip -rv ${{runner.temp}}/godot-pong_x64.zip windows_x64
+          cd ./build/windows_x64
+          zip -rv ${{runner.temp}}/godot-pong_x64.zip .
       - name: Release on tag
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
