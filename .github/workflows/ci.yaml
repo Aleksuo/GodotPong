@@ -16,6 +16,8 @@ jobs:
     uses: ./.github/workflows/run-checks.yaml
   release-export:
     name: Release export
+    permissions:
+     contents: write
     needs: 
      - build-image
      - run-checks
