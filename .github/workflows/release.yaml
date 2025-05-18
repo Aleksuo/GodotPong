@@ -1,6 +1,8 @@
 ﻿name: Release export
 on:
   workflow_call: 
+permissions:
+  contents: write
 jobs:
   release-export:
     runs-on: ubuntu-22.04
