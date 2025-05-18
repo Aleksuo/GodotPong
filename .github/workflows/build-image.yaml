@@ -21,4 +21,5 @@ jobs:
         with:
           name: godotbase
           path: ${{runner.temp}}/godotbase.tar
+          retention-days: 1
         
