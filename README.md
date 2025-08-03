@@ -1,6 +1,7 @@
 ﻿# Godot pong
 [![CI](https://github.com/Aleksuo/GodotPong/actions/workflows/ci.yaml/badge.svg)](https://github.com/Aleksuo/GodotPong/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Release](https://img.shields.io/github/release/Aleksuo/GodotPong.svg?style=flat)]() 
 
 > A simple Pong clone built with Godot Engine and C#.
 
@@ -16,6 +17,9 @@
 - Score tracking with game over condition on first to three scored
 - Simple AI to play against
 - Automated Windows release using Docker and GitHub Actions.
+
+## Download
+See the [Releases page](https://github.com/Aleksuo/GodotPong/releases) for downloads.
 
 ## Prerequisites
 - Install [Godot Engine 4.1.1](https://godotengine.org/)
